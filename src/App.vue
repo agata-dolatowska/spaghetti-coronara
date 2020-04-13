@@ -13,6 +13,7 @@ import Vue from 'vue';
 import Form from '@/components/Form.vue';
 import Recepe from '@/components/Recepe.vue';
 import RecepeData from '@/models/recepeData';
+import axios from 'axios';
 
 export default Vue.extend({
   name: 'App',
@@ -26,15 +27,22 @@ export default Vue.extend({
       recipesJSON: JSON,
     };
   },
-  methods: {
-    async getRecipes() {
-      const recipesResponse = await fetch(`${this.api + this.apiKey + this.query}&number=${this.amountOfResults}`);
 
-      this.recipesJSON = await recipesResponse.json();
-      const kupa = new RecepeData(this.recipesJSON);
-      console.log(kupa.results[0]);
+  methods: {
+    getRecipes() {
+      axios.get(`${this.api + this.apiKey + this.query}&number=${this.amountOfResults}`)
+        .then((response) => {
+          console.log(response.data); // surowy
+          const collection = response.data as RecepeData;
+          collection.results.forEach((element) => {
+            console.log(`Przepis -> ${element.id} -> ${element.title}`);
+          });
+        }).catch((e) => {
+          console.log(`Something went wrong: ${e}`);
+        });
     },
   },
+
   mounted() {
     this.getRecipes();
   },
