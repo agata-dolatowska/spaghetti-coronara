@@ -29,10 +29,10 @@ export default Vue.extend({
   },
 
   methods: {
-    getRecipes() {
+    getRecipesAxios() {
       axios.get(`${this.api + this.apiKey + this.query}&number=${this.amountOfResults}`)
         .then((response) => {
-          console.log(response.data); // surowy
+          console.log('Axios:');
           const collection = response.data as RecepeData;
           collection.results.forEach((element) => {
             console.log(`Przepis -> ${element.id} -> ${element.title}`);
@@ -41,10 +41,24 @@ export default Vue.extend({
           console.log(`Something went wrong: ${e}`);
         });
     },
+
+    getRecipesFetch() {
+      fetch(`${this.api + this.apiKey + this.query}&number=${this.amountOfResults}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Fetch:');
+          const collection = data as RecepeData;
+          collection.results.forEach((element) => {
+            console.log(`Przepis -> ${element.id} -> ${element.title}`);
+          });
+        })
+        .catch((error) => console.error(error));
+    },
   },
 
   mounted() {
-    this.getRecipes();
+    this.getRecipesAxios();
+    this.getRecipesFetch();
   },
 });
 </script>
