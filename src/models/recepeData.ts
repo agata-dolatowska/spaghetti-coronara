@@ -2,7 +2,7 @@ export default class RecepeData {
     results: {
         id: number;
         title: string;
-        image: string;
+        sourceUrl: string;
     }[];
 
     constructor(recipesJSON: JSON) {
