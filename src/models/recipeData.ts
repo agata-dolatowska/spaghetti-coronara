@@ -1,4 +1,4 @@
-export default class RecepeData {
+export default class RecipeData {
     results: {
         id: number;
         title: string;

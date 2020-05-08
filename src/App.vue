@@ -4,7 +4,7 @@ div
   div(class="container")
     div(class="wrapper")
       h1.title Get inspired with below recipes
-      p Please bear in mind 100% pasta based diet isn't recommended as a healthy nutrition style.
+      p.recipes-info Please bear in mind 100% pasta based diet isn't recommended as a healthy nutrition style.
       <Recipes/>
 </template>
 
@@ -34,16 +34,12 @@ body{
   color: #2c3e50;
 }
 
-p{
-  text-align: center;
-}
-
 .container {
   background-color: antiquewhite;
-  margin-top: 30px;
 }
 
 .wrapper {
+  width: 100%;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
@@ -53,6 +49,10 @@ p{
   @media screen and (min-width: 1024px){
     padding: 0;
   }
+}
+
+.recipes-info {
+  text-align: center;
 }
 
 .title {
