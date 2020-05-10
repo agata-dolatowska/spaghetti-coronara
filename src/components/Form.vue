@@ -1,7 +1,7 @@
 <template lang="pug">
-    div(@input="countDays")
+    div(@input="countDays" class="wrapper form-wrapper")
       h1.form-result You have pasta for {{days}} days
-      div.form-wrapper
+      div.inputs-wrapper
         div.form-item-wrapper
           label(for="packages") Amount of pasta (packages) - {{packages}}
           input(id="packages" type="range" min="1" max="300" v-model="packages")
@@ -55,9 +55,12 @@ export default Vue.extend({
   }
 }
 
-.form-wrapper{
+.form-wrapper {
+  margin-bottom: 50px;
+}
+
+.inputs-wrapper{
   width: 100%;
-  padding: 0 15px;
 
   @media screen and (min-width: 1024px){
     margin-left: auto;
